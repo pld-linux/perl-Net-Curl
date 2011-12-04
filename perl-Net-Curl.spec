@@ -1,12 +1,11 @@
 #
 # Conditional build:
 %bcond_with	tests	# perform "make test"
-#
-%include	/usr/lib/rpm/macros.perl
+
 %define		pdir	Net
 %define		pnam	Curl
-Summary:	Net::Curl -
-Summary(pl.UTF-8):	Net::Curl - object oriented interface to curl
+%include	/usr/lib/rpm/macros.perl
+Summary:	Net::Curl - object oriented interface to curl
 Name:		perl-Net-Curl
 Version:	0.25
 Release:	1
@@ -19,8 +18,6 @@ BuildRequires:	curl-devel
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_noautoreq	'perl(Thread)'
 
 %description
 Net::Curl provides a Perl interface to libcurl created with
@@ -52,5 +49,5 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_vendorarch}/Net/Curl
 %dir %{perl_vendorarch}/auto/Net/Curl
 %attr(755,root,root) %{perl_vendorarch}/auto/Net/Curl/Curl.so
-%attr(755,root,root) %{perl_vendorarch}/auto/Net/Curl/Curl.bs
+%{perl_vendorarch}/auto/Net/Curl/Curl.bs
 %{_mandir}/man3/*
