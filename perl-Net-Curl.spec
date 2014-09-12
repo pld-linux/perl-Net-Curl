@@ -49,5 +49,4 @@ rm -rf $RPM_BUILD_ROOT
 %{perl_vendorarch}/Net/Curl
 %dir %{perl_vendorarch}/auto/Net/Curl
 %attr(755,root,root) %{perl_vendorarch}/auto/Net/Curl/Curl.so
-%{perl_vendorarch}/auto/Net/Curl/Curl.bs
 %{_mandir}/man3/*
