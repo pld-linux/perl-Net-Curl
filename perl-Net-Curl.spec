@@ -4,7 +4,6 @@
 
 %define		pdir	Net
 %define		pnam	Curl
-%include	/usr/lib/rpm/macros.perl
 Summary:	Net::Curl - object oriented interface to curl
 Name:		perl-Net-Curl
 Version:	0.25
