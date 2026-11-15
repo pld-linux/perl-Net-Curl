@@ -6,13 +6,13 @@
 %define		pnam	Curl
 Summary:	Net::Curl - object oriented interface to curl
 Name:		perl-Net-Curl
-Version:	0.25
+Version:	0.60
 Release:	1
 License:	GPL or Artistic
 Group:		Development/Languages/Perl
-Source0:	http://www.cpan.org/modules/by-module/Net/%{pdir}-%{pnam}-%{version}.tar.gz
-# Source0-md5:	556a932ddf14757e05d3e1b527b28c49
-URL:		http://search.cpan.org/dist/Net-Curl/
+Source0:	https://www.cpan.org/authors/id/S/SY/SYP/%{pdir}-%{pnam}-%{version}.tar.gz
+# Source0-md5:	cba3b9e2b4a47ef6b437fe434dbda806
+URL:		https://metacpan.org/dist/Net-Curl
 BuildRequires:	curl-devel
 BuildRequires:	perl-devel >= 1:5.8.0
 BuildRequires:	rpm-perlprov >= 4.1-13
@@ -28,22 +28,27 @@ object-oriented implementations in mind.
 %build
 %{__perl} Makefile.PL \
 	INSTALLDIRS=vendor
-%{__make}
+%{__make} \
+	CC="%{__cc}" \
+	OPTIMIZE="%{rpmcflags} %{rpmcppflags}" \
+	OTHERLDFLAGS="%{rpmldflags}"
 
 %{?with_tests:%{__make} test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
+%{__make} pure_install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+%{__rm} $RPM_BUILD_ROOT%{perl_vendorarch}/auto/Net/Curl/.packlist
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README
+%doc Changes README
 %{perl_vendorarch}/Net/Curl.pm
 %{perl_vendorarch}/Net/Curl
 %dir %{perl_vendorarch}/auto/Net/Curl
